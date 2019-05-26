@@ -3,7 +3,7 @@ from flask_sqlalchemy import SQLAlchemy
 
 app = Flask(__name__)
 app.config['DEBUG'] = True
-app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://blogz:blogz45@localhost:8889/blogz'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://blog:blogz45@localhost:8889/blog'
 app.config['SQLALCHEMY_ECHO'] = True
 db = SQLAlchemy(app)
 app.secret_key = ""
@@ -16,7 +16,7 @@ class Blogz(db.Model):
     pub_date = db.Column(db.DateTime)
     owner_id = db.Column(db.Integer, db.ForeignKey('user.id'))
 
-    def __init__(self, title, body, owern, pub_date=None):
+    def __init__(self, title, body, owner, pub_date=None):
         self.title = title
         self.body = body
         self.owner = owner
@@ -35,7 +35,7 @@ class User(db.Model):
         self.email = email
         self.password = password
 
-'''@app.before_request
+@app.before_request
 def require_login():
     allowed_routes = ['login', 'signup', 'index', 'blog']
     if request.endpoint not in allowed_routes and 'username' not in session:
@@ -49,7 +49,7 @@ def index():
 
 @app.route('/blog')
 def blog():
-    post = Blogz.query.all()
+    posts = Blogz.query.all()
     blog_id = request.args.get('id')
     user_id = request.args.get('user')
 
@@ -148,7 +148,7 @@ def signup():
 @app.route('/logout')
 def logout():
     del session['username']
-    return redirect('/blog')'''
+    return redirect('/blog')
 
 
 if __name__ == "__main__":
