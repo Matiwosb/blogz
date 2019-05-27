@@ -1,11 +1,11 @@
 {% extends "base.html" %}
 
 {% block content %}
-
-{% for user in users %}
-<ul>
-    <li><a href="/blog?user={{user.id}}">{{user.username}}</a></li>
-</ul>
-{% endfor %}
-
+      <div class="index">
+        <h1>Visitors</h1>
+        <hr>
+        {% for user in users %}
+        <p class="users"><a href="/blog?userid={{user.id}}">{{ user.username }}</a></p>
+        {% endfor %}
+      </div>
 {% endblock %}

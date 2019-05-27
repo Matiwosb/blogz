@@ -1,20 +1,21 @@
 {% extends "base.html" %}
 
 {% block content %}
-<h1>New Post</h1>
-<br>
-    <form method='post'>
-        <label>Title for your new blog:
-            <br>
-            <input type="text" name='blog-title' value="{{blog_title}}">
-        </label>
-        <p class="error">{{title_error}}</p>
-        <label>Your new blog:
-            <br>
-            <textarea name="blog-entry" style="width:540px; height:125px;">{{blog_body}}</textarea>
-        </label>
-        <p class="error">{{body_error}}</p>
-        <input type="submit" value='Add Entry'>
-    
-</form>
+      <div class="new-post">
+
+        <h1 class="post-header">New Post</h1>
+
+        <form method='post'>
+
+          <input type="text" name="title" value='{{blog_title}}' placeholder="Your Title Here"/>
+          <p class="error">{{title_error}}</p><br><br>
+
+          <textarea type="text" name="body" placeholder="Your Text Here">{{blog_body}}</textarea>
+          <p class="error">{{body_error}}</p><br>
+
+          <input type="submit" value="Post"/>
+
+        </form>
+
+      </div>
 {% endblock %}

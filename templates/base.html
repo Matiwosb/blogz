@@ -1,49 +1,47 @@
 <!DOCTYPE html>
-<html>
-<head>
-    <title>Blogz</title>
-    <link rel="stylesheet" href="https://bootswatch.com/yeti/bootstrap.min.css" crossorigin="anonymous">
-    <style>
-        h1{
-            text-align: center;
-        }
-        .error{
-            color: red;
-        }
-    </style>
-</head>
-<body>
-    <nav class="navbar navbar-default navbar-fixed-top">
-        <div class='container'>
-            <ul class="nav navbar-nav">
-                <li><a href="/">Home</a></li>
-                <li><a href="/blog">All Post</a></li>
-                <li><a href="/newpost">New Post</a></li>
-            </ul>
-            <ul class="nav navbar-nav navbar-right">
-                <li><a href="/login">Login</a></li>
-                <li><a href="/logout">Logout</a></li>
-            </ul>
-        </div>
-    </nav>
-    <div class='container'>
-    <br>
-    <br>
-    <h1>{{header}}</h1>
-    
-    {% with messages = get_flashed_messages(with_categories=True) %}
-    <ul>
-    {% for category, message in messages %}
-        <li class="{{category}}">{{message}}</li>
-    {% endfor %}
-    </ul>
-    {% endwith %}
 
-    {% block content %}
-    {% endblock %}
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js" integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1" crossorigin="anonymous"></script>
+<html>
+
+  <head>
+
+    <meta charset="UTF-8">
+    <title>{{title}}</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- FONTS -->
+    <link href="https://fonts.googleapis.com/css?family=Roboto+Mono:400,500,700" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" rel="stylesheet">
+    <!-- STYLESHEETS -->
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles/bootstrap.min.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles/styles.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles/wow.css') }}">
+    <!-- SCRIPTS -->
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+    <script type="text/javascript" src="{{ url_for('static', filename='scripts/wow.js') }}"></script>
+    <script type="text/javascript" src="{{ url_for('static', filename='scripts/wow.min.js') }}"></script>
+    <!-- ACTIVATE ANIMATION SCRIPTS -->
+    <script>
+      new WOW().init();
+    </script>
+
+  </head>
+
+  <body>
+
+    <div class="container">
+
+      <nav class="header">
+
+        <h1 class="title"><a href="/">Blogz!</a></h1>
+        <a href="/blog" class="left spacing">View All Posts</a>
+        <a href="/newpost"><i class="fa fa-pencil" aria-hidden="true"></i> New Post</a>
+        <a href="/logout" class="right"><i class="fa fa-sign-out"></i> Logout</a>
+        <a href="/login" class="right spacing"><i class="fa fa-sign-in"></i> Login</a>
+
+      </nav>
+      {% block content %}
+      {% endblock %}
     </div>
-</body>
+
+  </body>
+
 </html>
