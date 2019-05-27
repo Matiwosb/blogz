@@ -2,8 +2,11 @@
 
 {% block content %}
     
-    <h1>{{post.title}}</h1>
+    {% for post in posts %}
+    <h3><a href="/blog?id={{post.id}}">{{post.title}}</a></h3>
     <p>{{post.body}}</p>
     <p><small>written by <a href="/blog?user={{post.owner_id}}">{{post.owner.username}}</a> on {{post.pub_date}} UTC</small></p>
-               
+    <hr>
+    {% endfor %}
+
 {% endblock %}
